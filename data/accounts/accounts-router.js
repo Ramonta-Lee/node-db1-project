@@ -8,8 +8,10 @@ const router = express.Router();
 // GET Requests:
 router.get("/", (req, res) => {
   // list of accounts
+  
   db.select("*")
     .from("accounts")
+    .limit(req.headers.limit)
     .then(accounts => {
       res.status(200).json(accounts);
     })
